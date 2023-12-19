@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cal.css">
+</head>
+<body>
+    
+    <div class="box" id="calculator">
+        <input type="text" id="display" disabled>
+        <hr>
+        <div class="btn">
+        <button id="clear" onclick="clearDisplay()">C</button>
+        <button onclick="backspace()">&#9003;</button>
+        <button onclick="appendCharacter('%')">%</button>
+        <button onclick="appendCharacter('/')">÷</button><br>
+        <button onclick="appendCharacter('7')">7</button>
+        <button onclick="appendCharacter('8')">8</button>
+        <button onclick="appendCharacter('9')">9</button>
+        <button onclick="appendCharacter('*')">*</button><br>
+        <button onclick="appendCharacter('4')">4</button>
+        <button  onclick="appendCharacter('5')">5</button>
+        <button onclick="appendCharacter('6')">6</button>
+        <button onclick="appendCharacter('-')">-</button><br>
+        <button onclick="appendCharacter('3')">3</button>
+        <button onclick="appendCharacter('2')">2</button>
+        <button onclick="appendCharacter('1')">1</button>
+        <button onclick="appendCharacter('+')">+</button><br>
+        <button onclick="appendCharacter('.')">.</button>
+        <button onclick="appendCharacter('0')">0</button>
+        <button onclick="appendCharacter('^')">^</button>
+        <button  onclick="calculate()">=</button>
+    </div>
+    </div>
+    <script>
+        function appendCharacter(character) {
+      document.getElementById('display').value += character;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+  function calculate() {
+    try {
+      var expression = document.getElementById('display').value;
+      expression = expression.replace(/\^/g, '**');
+
+      document.getElementById('display').value = eval(expression);
+    } catch (error) {
+      document.getElementById('display').value = 'Error';
+    }
+  }
+  function backspace() {
+    var currentValue = document.getElementById('display').value;
+    document.getElementById('display').value = currentValue.slice(0, -1);
+  }
+    </script>
+</body>
+</html>
